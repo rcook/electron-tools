@@ -1,0 +1,28 @@
+#!/usr/bin/python
+# electron-tools
+# Copyright (C) 2015 Richard Cook
+# Released under MIT License
+
+import argparse
+
+def main(args):
+  with open(args.input_file_name, "rU") as f:
+    lines = f.read().splitlines()
+
+  data = bytearray("\r".join(lines))
+  with open(args.output_file_name, "wb") as f:
+    f.write(data)
+
+if __name__=="__main__":
+  parser = argparse.ArgumentParser(description="Convert generic text file to Acorn MOS format")
+  parser.add_argument(
+    "input_file_name",
+    metavar="INPUT_FILE_NAME",
+    help="Read text from INPUT_FILE_NAME")
+  parser.add_argument(
+    "output_file_name",
+    metavar="OUTPUT_FILE_NAME",
+    help="Write text to OUTPUT_FILE_NAME")
+  args = parser.parse_args()
+  main(args)
+
